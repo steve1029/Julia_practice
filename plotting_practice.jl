@@ -13,6 +13,7 @@ y = rand(10,3);
 println(size(y))
 
 fig1 = plot(x,y)
-display(fig1)
+savefig(fig1,"./test.png")
+#display(fig1)
 #sleep(5)
-readline()
+#readline()
