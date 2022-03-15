@@ -1,3 +1,6 @@
+using Printf
+using Statistics
+
 mutable struct TypeExample
     a::Int64
     b::Float64
@@ -15,3 +18,16 @@ function multiplier(xx::TypeExample)
 end
 
 multiplier(x)
+
+
+c2 = Char(120)
+println(c2)
+
+i1 = UInt8(trunc(3.14))
+println(i1)
+
+f1 = parse(Float64, "1")
+println(i1)
+
+i2 = parse(Int8, "1")
+println(i2)
