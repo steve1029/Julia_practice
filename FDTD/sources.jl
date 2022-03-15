@@ -1,4 +1,5 @@
 using Printf
+using Plots
 #using PhysicalConstants.CODATA2018
 #import PhysicalConstants.CODATA2018: c_0, μ_0, ε_0
 #=
@@ -20,10 +21,15 @@ Lx, Ly, Lz = 128*10*um, 128*10*um, 128*10*um
 Nx, Ny, Nz = 128, 128, 128
 dx, dy, dz = Lx/Nx, Ly/Ny, Lz/Nz
 
-courant = 1./4
+courant = 1/4
 dt = courant * min(dx,dy,dz) / c0
 Tsteps = 3001
 
+cwv = 300*um
+interval = 2
+spread   = 0.3
+peak_pos = 1000
+plot_per = 100
 
 function gaussian(tstep, dt, cwv, spread, peak_pos)::Float64
     cfreq = c0 / cwv
@@ -36,5 +42,5 @@ function gaussian(tstep, dt, cwv, spread, peak_pos)::Float64
     return pulse_re
 end
 
-gauss = gaussian(30, 1.,100.,5.,50.)
+gauss = gaussian(peak_pos, dt, cwv, spread, peak_pos)
 @printf("%e", gauss)
