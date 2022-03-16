@@ -3,12 +3,6 @@ import PhysicalConstants.CODATA2018 as phy
 using Printf
 #using Formatting
 
-nm = 1e-9
-um = 1e-6
-
-tsteps = 1000
-Nz = 1000
-
 #eps = float(Float64, phy.VacuumElectricPermittivity)
 #mu = float(Float64, phy.VacuumMagneticPermeability)
 #eps = PhysicalConstants.CODATA2018
@@ -17,7 +11,11 @@ eps = phy.VacuumElectricPermittivity
 mu = phy.VacuumMagneticPermeability
 
 println(mu)
+print("\n\n")
 println(eps)
+
+println(float(Float64, mu))
+println(typeof(float(Float64, mu)))
 #print(μ_0)
 #@printf(".3f", c_0)
 #println("$eps", typeof(eps))

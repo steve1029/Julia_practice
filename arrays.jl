@@ -79,3 +79,23 @@ for n = 1:5
     end
     println()
 end
+
+print("\n\n")
+a = [1 2 3]
+b = [1 2 3]
+c = a.*b
+println(c)
+println(3. .* a)
+
+println(typeof(a))
+println(typeof(a) == Matrix{Int})
+println(typeof(a) === Matrix{Int})
+
+println(typeof(3.))
+println(typeof(3.) == Float64)
+println(typeof(3.) == AbstractFloat)
+
+println(typeof(3))
+println(typeof(3) == Int)
+println(typeof(3) == Int64)
+println(typeof(3) == AbstractFloat)
