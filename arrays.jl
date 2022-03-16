@@ -86,6 +86,13 @@ b = [1 2 3]
 c = a.*b
 println(c)
 println(3. .* a)
+d = a .+ 1im .* b
+println(d)
+println(sum(abs.(d)))
+println(sqrt(sum(abs2.(d))))
+
+e = [a b]
+println(e)
 
 println(typeof(a))
 println(typeof(a) == Matrix{Int})
