@@ -82,10 +82,10 @@ end
 
 print("\n\n")
 a = [1 2 3]
-b = [1 2 3]
+b = [1.1 2.2 3.3]
 c = a.*b
 println(c)
-println(3. .* a)
+println(3. .* a .* .5)
 d = a .+ 1im .* b
 println(d)
 println(sum(abs.(d)))
@@ -106,3 +106,9 @@ println(typeof(3))
 println(typeof(3) == Int)
 println(typeof(3) == Int64)
 println(typeof(3) == AbstractFloat)
+
+outer = vec(a) * b
+println(typeof(a))
+println(typeof(b))
+println(outer)
+println(size(outer))

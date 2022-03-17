@@ -34,12 +34,31 @@ function gaussian_plotting(tsteps, wvlens, dt, cwv, spread, peak_pos)
     tc = peak_pos * dt
     freqs = c0 ./ wvlens
 
-    tt = tsteps.*dt .- tc
-    pulse_re = exp.((-.5) .* ((tt.*ws).^2)) .* cos.(ws.*tt)
-    pulse_im = exp.((-.5) .* ((tt.*ws).^2)) .* sin.(ws.*tt)
+    tt = (tsteps.*dt .- tc) .* ws
+    pulse_re = exp.((-.5) .* (tt.^2)) .* cos.(tt)
+    pulse_im = exp.((-.5) .* (tt.^2)) .* sin.(tt)
 
-    pulse_re_ft = sum(dt .* pulse_re * exp.((1im*2*π).*freqs.*dt.tsteps))
-    pulse_im_ft = sum(dt .* pulse_re * exp.((1im*2*π).*freqs.*dt.tsteps))
+    #println(size(vec(freqs)))
+    #println(size(tsteps))
+
+    # freqs and tsteps are vector. 
+    # They should be converted to Matrix
+    # before we operate outer product on them.
+    #println(typeof(vec(freqs)))
+    #println(typeof(tsteps))
+
+    freqs = reshape(freqs, length(freqs), 1)
+    tsteps = reshape(tsteps, 1, length(tsteps))
+
+    # By reshape function, we can make an array to Matrix.
+    #println(typeof(vec(freqs)))
+    #println(typeof(tsteps))
+
+    println(size(vec(freqs) * tsteps))
+    println(size(exp.((1im*2*π*dt) .* (vec(freqs) * tsteps))))
+
+    pulse_re_ft = sum((dt .* pulse_re) * exp.((1im*2*π) .* freqs .* dt .* tsteps))
+    pulse_im_ft = sum((dt .* pulse_re) * exp.((1im*2*π) .* freqs .* dt .* tsteps))
     pulse_re_ft_amp = sqrt(sum(abs2.(pulse_re_ft)))
     pulse_im_ft_amp = sqrt(sum(abs2.(pulse_im_ft)))
 
@@ -77,16 +96,16 @@ if abspath(PROGRAM_FILE) == @__FILE__
     peak_pos = 1000
     plot_per = 100
 
-    wvlens = 200*um:interval*um:600*um
-    println(wvlens)
+    wvlens = collect(200*um:interval*um:600*um)
+    #println(wvlens)
     freqs = c0 ./ wvlens
-    t = 0:1:Tsteps
+    t = collect(0:Tsteps)
 
-    println(t)
-    println(t.*2)
-    println(typeof(t))
+    #println(t)
+    #println(t.*2)
+    #println(typeof(t))
     gauss = gaussian(peak_pos, dt, cwv, spread, peak_pos)
-    println(gauss)
+    #println(gauss)
     gauss_plot = gaussian_plotting(t, freqs, dt, cwv, spread, peak_pos)
 
 end

@@ -4,12 +4,18 @@
     // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "julia",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/Program",
+            "stopOnEntry": false
+        },
         {
             "type": "julia",
             "request": "launch",
             "name": "Run active Julia file",
-            "program": "${file}",
+            "program": "${workspaceFolder}\\Julia-Scripts\\FDTD\\sources.jl",
             "stopOnEntry": false,
             "cwd": "${workspaceFolder}",
             "juliaEnv": "${command:activeJuliaEnvironment}"
